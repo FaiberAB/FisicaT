@@ -1,0 +1,60 @@
+
+<!-- 
+  ███████╗ █████╗ ██╗██████╗ ███████╗██████╗ 
+  ██╔════╝██╔══██╗██║██╔══██╗██╔════╝██╔══██╗
+  █████╗  ███████║██║██████╔╝█████╗  ██████╔╝
+  ██╔══╝  ██╔══██║██║██╔══██╗██╔══╝  ██╔══██╗
+  ██║     ██║  ██║██║███████║███████╗██║  ██║
+  ╚═╝     ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝
+  Código creado por Faiber Ariza 
+  Instagram: @faiber._.ab
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Tensiones</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="header">
+  <h1>Faiber Ariza</h1>
+  <div class="social">
+    <a href="https://www.instagram.com/faiber._.ab/" target="_blank">Instagram</a>
+  </div>
+</div>
+
+<div class="contenedor">
+  <div class="formulario">
+    <h2>Ingresa los datos</h2>
+    <form method="POST">
+      <label>Ángulo A (°):</label>
+      <input type="number" name="anguloA" required>
+      <label>Ángulo B (°):</label>
+      <input type="number" name="anguloB" required>
+      <label>Masa (kg):</label>
+      <input type="number" name="masa" required>
+      <button type="submit">Calcular</button>
+    </form>
+  </div>
+
+  <div class="resultado">
+    {% if mostrar %}
+      <h2>Resultados</h2>
+      <p><strong>T1:</strong> {{ t1 }} N</p>
+      <p><strong>T2:</strong> {{ t2 }} N</p>
+      <p><strong>T3:</strong> {{ t3 }} N</p>
+
+      <img src="{{ url_for('static', filename='grafico.png') }}?v={{ t1 }}" alt="Gráfico de tensiones">
+    {% endif %}
+    
+    {% if error %}
+      <p style="color:red;">Error: {{ error }}</p>
+    {% endif %}
+  </div>
+</div>
+
+</body>
+</html>
