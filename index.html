@@ -1,21 +1,9 @@
-
-<!-- 
-  ███████╗ █████╗ ██╗██████╗ ███████╗██████╗ 
-  ██╔════╝██╔══██╗██║██╔══██╗██╔════╝██╔══██╗
-  █████╗  ███████║██║██████╔╝█████╗  ██████╔╝
-  ██╔══╝  ██╔══██║██║██╔══██╗██╔══╝  ██╔══██╗
-  ██║     ██║  ██║██║███████║███████╗██║  ██║
-  ╚═╝     ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝
-  Código creado por Faiber Ariza 
-  Instagram: @faiber._.ab
--->
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Calculadora de Tensiones</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
@@ -47,14 +35,14 @@
       <p><strong>T2:</strong> {{ t2 }} N</p>
       <p><strong>T3:</strong> {{ t3 }} N</p>
 
-      <img src="{{ url_for('static', filename='grafico.png') }}?v={{ t1 }}" alt="Gráfico de tensiones">
+      <img src="/grafico.png?v={{ t1 }}" alt="Gráfico de tensiones">
     {% endif %}
     
     {% if error %}
       <p style="color:red;">Error: {{ error }}</p>
     {% endif %}
   </div>
-</div>
+</div>  
 
 </body>
 </html>

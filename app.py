@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, request, render_template_string, send_from_directory
 import math
 import matplotlib.pyplot as plt
 from scipy.optimize import fsolve
@@ -42,13 +42,13 @@ def graficar_direcciones(a, b):
     plt.title('Direcciones de Tensiones')
     plt.legend()
 
-    os.makedirs("static", exist_ok=True)
-    ruta = os.path.join("static", "grafico.png")
-    plt.savefig(ruta)
+    plt.savefig("grafico.png")
     plt.close()
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    html = open("index.html", encoding="utf-8").read()
+
     if request.method == "POST":
         try:
             angulo_a = float(request.form["anguloA"])
@@ -58,15 +58,24 @@ def index():
             t1, t2, t3, a_rad, b_rad = resolver_tensiones(angulo_a, angulo_b, masa)
             graficar_direcciones(a_rad, b_rad)
 
-            return render_template("index.html",
-                                   t1=round(t1, 2),
-                                   t2=round(t2, 2),
-                                   t3=round(t3, 2),
-                                   mostrar=True)
+            return render_template_string(html,
+                                          t1=round(t1, 2),
+                                          t2=round(t2, 2),
+                                          t3=round(t3, 2),
+                                          mostrar=True,
+                                          error=None)
         except Exception as e:
-            return render_template("index.html", error=str(e), mostrar=False)
+            return render_template_string(html, mostrar=False, error=str(e))
 
-    return render_template("index.html", mostrar=False)
+    return render_template_string(html, mostrar=False, error=None)
+
+@app.route('/style.css')
+def css():
+    return send_from_directory('.', 'style.css')
+
+@app.route('/grafico.png')
+def grafico():
+    return send_from_directory('.', 'grafico.png')
 
 if __name__ == "__main__":
     app.run(debug=True)
