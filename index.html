@@ -2,47 +2,60 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Calculadora de Tensiones</title>
-  <link rel="stylesheet" href="/style.css">
+  <title>Simulador Plano con Fuerza Externa</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="header">
-  <h1>Faiber Ariza</h1>
-  <div class="social">
-    <a href="https://www.instagram.com/faiber._.ab/" target="_blank">Instagram</a>
-  </div>
-</div>
+  <header class="header">
+    <h1 class="fade-in">Dinámica de Plano Inclinado</h1>
+    <h2 class="fade-in-slow">Fuerzas Externas y Fricción</h2>
+    <div class="social fade-in-slow">
+      <a href="https://www.instagram.com/faiber._.ab/" target="_blank">Instagram</a>
+    </div>
+  </header>
 
-<div class="contenedor">
-  <div class="formulario">
-    <h2>Ingresa los datos</h2>
-    <form method="POST">
-      <label>Ángulo A (°):</label>
-      <input type="number" name="anguloA" required>
-      <label>Ángulo B (°):</label>
-      <input type="number" name="anguloB" required>
-      <label>Masa (kg):</label>
-      <input type="number" name="masa" required>
-      <button type="submit">Calcular</button>
-    </form>
-  </div>
+  <main class="contenedor">
+    <section class="formulario fade-in">
+      <h2>Variables del Sistema</h2>
+      <form id="planoForm">
+        <label>1. Ángulo del Plano (θ) [°]:</label>
+        <input type="text" name="theta" placeholder="0 a 90" required>
+        
+        <label>2. Masa del Bloque (m) [kg]:</label>
+        <input type="text" name="masa" placeholder="Ej: 10" required>
+        
+        <label>3. Coef. Fricción Cinético (μk):</label>
+        <input type="text" name="miu" placeholder="0.0 a 1.0" required>
 
-  <div class="resultado">
-    {% if mostrar %}
+        <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+        <h3>Fuerza Aplicada (Externa)</h3>
+
+        <label>Magnitud de Fuerza (F) [N]:</label>
+        <input type="text" name="fuerza" placeholder="Ej: 50" required>
+
+        <label>Dirección de Fuerza (φ) [°]:</label>
+        <small style="display:block; margin-bottom:5px; color:#666;">(0° es paralelo al plano hacia arriba)</small>
+        <input type="text" name="phi" placeholder="Ej: 0, 30, -20" required>
+        
+        <button type="submit">Simular Física</button>
+      </form>
+    </section>
+
+    <section class="resultado fade-in-slow" id="resultado" style="display:none;">
       <h2>Resultados</h2>
-      <p><strong>T1:</strong> {{ t1 }} N</p>
-      <p><strong>T2:</strong> {{ t2 }} N</p>
-      <p><strong>T3:</strong> {{ t3 }} N</p>
+      <div class="res-grid">
+        <p><strong>Normal (N):</strong> <span id="valNormal"></span> N</p>
+        <p><strong>Fricción (fk):</strong> <span id="valFriccion"></span> N</p>
+        <p><strong>Aceleración (a):</strong> <span id="valAcel"></span> m/s²</p>
+      </div>
+      
+      <div class="grafico-box">
+        <canvas id="grafico" width="500" height="450"></canvas>
+      </div>
+    </section>
+  </main>
 
-      <img src="/grafico.png?v={{ t1 }}" alt="Gráfico de tensiones">
-    {% endif %}
-    
-    {% if error %}
-      <p style="color:red;">Error: {{ error }}</p>
-    {% endif %}
-  </div>
-</div>  
-
+  <script src="script.js"></script>
 </body>
 </html>
