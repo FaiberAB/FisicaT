@@ -58,7 +58,9 @@ document.getElementById("planoForm").addEventListener("submit", function (e) {
   document.getElementById("valNormal").textContent = normal.toFixed(2);
   document.getElementById("valFriccion").textContent = friccion.toFixed(2);
   document.getElementById("valAcel").textContent = aceleracion.toFixed(2);
-  document.getElementById("resultado").style.display = "block"; 
+  
+  // Forzar display flex para que respete la dirección de columna del CSS
+  document.getElementById("resultado").style.display = "flex"; 
 
   dibujarSistema(theta, phi, normal, friccion, aceleracion, direccionMovimiento, fAplicadaConstante);
 });
