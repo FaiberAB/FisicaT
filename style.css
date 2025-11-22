@@ -1,11 +1,9 @@
-/* Estilo Único (Minimalista/Educativo) */
-
 :root {
-  --color-principal: #007bff; /* Azul primario */
-  --color-secundario: #6c757d; /* Gris */
-  --color-fondo: #f8f9fa; /* Gris muy claro */
+  --color-principal: #007bff;
+  --color-secundario: #6c757d;
+  --color-fondo: #f8f9fa;
   --color-tarjeta: #ffffff;
-  --sombra-tarjeta: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --sombra-tarjeta: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 body {
@@ -16,7 +14,6 @@ body {
   line-height: 1.6;
 }
 
-/* Encabezado */
 .header {
   text-align: center;
   padding: 30px 20px;
@@ -28,7 +25,6 @@ body {
 .titulo { margin: 0; font-size: 2.2rem; color: var(--color-principal); font-weight: 700; }
 .subtitulo { margin-top: 5px; font-size: 1.1rem; color: var(--color-secundario); font-weight: 300; }
 
-/* Contenedor Principal */
 .contenedor {
   display: flex;
   justify-content: center;
@@ -40,7 +36,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* Tarjetas (Formulario y Resultado) */
 .tarjeta {
   flex: 1 1 400px;
   background: var(--color-tarjeta);
@@ -48,14 +43,14 @@ body {
   border-radius: 8px;
   box-shadow: var(--sombra-tarjeta);
   border: 1px solid #dee2e6;
+  min-width: 300px;
 }
 
 .tarjeta h2 { color: var(--color-principal); border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-top: 0; font-size: 1.5rem; }
 
-/* Formulario */
 .input-group { margin-bottom: 20px; }
 label { display: block; font-weight: 600; margin-bottom: 8px; color: #495057; }
-small { color: var(--color-secundario); font-size: 0.85rem; }
+small { color: var(--color-secundario); font-size: 0.85rem; display: block; margin-bottom: 5px; }
 
 input[type="number"], select {
   width: 100%;
@@ -85,40 +80,39 @@ button {
 }
 button:hover { background-color: #0056b3; }
 
-/* Resultados */
 .res-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   background: #e9ecef;
-  padding: 15px;
+  padding: 20px;
   border-radius: 6px;
   margin-bottom: 25px;
   text-align: center;
 }
 
 .dato { padding: 5px 0; }
-.dato strong { display: block; font-size: 0.85rem; color: var(--color-secundario); margin-bottom: 3px; }
-.dato span { font-size: 1.5rem; font-weight: 700; color: #343a40; }
+.dato strong { display: block; font-size: 0.9rem; color: var(--color-secundario); margin-bottom: 5px; }
+.dato span { font-size: 1.6rem; font-weight: 700; color: #343a40; }
 
 .grafico-box {
+  width: 100%;
+  margin-top: 20px;
   border: 1px solid #ced4da;
   border-radius: 4px;
-  overflow: hidden;
   background: white;
   display: flex;
   justify-content: center;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 canvas { max-width: 100%; height: auto; display: block; }
 .nota-pie { text-align: center; font-size: 0.85rem; color: var(--color-secundario); margin-top: 15px; }
 
-/* Animaciones */
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.fade-in { animation: fadeIn 0.8s ease forwards; }
-.fade-in-slow { animation: fadeIn 1.2s ease forwards; }
+.formulario, .resultado { animation: fadeIn 0.8s ease forwards; }
 
-/* Responsive */
 @media (max-width: 768px) {
   .contenedor { padding: 20px; }
   .tarjeta { padding: 20px; }
