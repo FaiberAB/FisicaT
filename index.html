@@ -2,57 +2,80 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Simulador Plano con Fuerza Externa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador Plano Inclinado Completo</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header class="header">
-    <h1 class="fade-in">Dinámica de Plano Inclinado</h1>
-    <h2 class="fade-in-slow">Fuerzas Externas y Fricción</h2>
+    <h1 class="fade-in">Simulador de Plano Inclinado</h1>
+    <h2 class="fade-in-slow">Dinámica con Fuerzas Externas</h2>
     <div class="social fade-in-slow">
-      <a href="https://www.instagram.com/faiber._.ab/" target="_blank">Instagram</a>
+      <a href="https://www.instagram.com/faiber._.ab/" target="_blank">Instagram: faiber._.ab</a>
     </div>
   </header>
 
   <main class="contenedor">
     <section class="formulario fade-in">
-      <h2>Variables del Sistema</h2>
+      <h2>Datos del Sistema</h2>
       <form id="planoForm">
-        <label>1. Ángulo del Plano (θ) [°]:</label>
-        <input type="text" name="theta" placeholder="0 a 90" required>
         
-        <label>2. Masa del Bloque (m) [kg]:</label>
-        <input type="text" name="masa" placeholder="Ej: 10" required>
+        <div class="input-group">
+          <label>1. Ángulo del Plano (θ) [°]:</label>
+          <input type="text" name="theta" placeholder="Ej: 30" required>
+        </div>
         
-        <label>3. Coef. Fricción Cinético (μk):</label>
-        <input type="text" name="miu" placeholder="0.0 a 1.0" required>
+        <div class="input-group">
+          <label>2. Masa del Bloque (m) [kg]:</label>
+          <input type="text" name="masa" placeholder="Ej: 10" required>
+        </div>
+        
+        <div class="input-group">
+          <label>3. Coef. Fricción (μk):</label>
+          <input type="text" name="miu" placeholder="Ej: 0.2" required>
+        </div>
 
-        <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+        <hr class="separador">
         <h3>Fuerza Aplicada (Externa)</h3>
 
-        <label>Magnitud de Fuerza (F) [N]:</label>
-        <input type="text" name="fuerza" placeholder="Ej: 50" required>
+        <div class="input-group">
+          <label>Magnitud de Fuerza (F) [N]:</label>
+          <input type="text" name="fuerza" placeholder="Ej: 50 (0 si no hay)" required>
+        </div>
 
-        <label>Dirección de Fuerza (φ) [°]:</label>
-        <small style="display:block; margin-bottom:5px; color:#666;">(0° es paralelo al plano hacia arriba)</small>
-        <input type="text" name="phi" placeholder="Ej: 0, 30, -20" required>
+        <div class="input-group">
+          <label>Dirección de Fuerza (φ) [°]:</label>
+          <small>(Ángulo respecto a la superficie del plano)</small>
+          <input type="text" name="phi" placeholder="Ej: 0, 20, -15" required>
+        </div>
         
         <button type="submit">Simular Física</button>
       </form>
     </section>
 
     <section class="resultado fade-in-slow" id="resultado" style="display:none;">
-      <h2>Resultados</h2>
+      <h2>Resultados Calculados</h2>
+      
       <div class="res-grid">
-        <p><strong>Normal (N):</strong> <span id="valNormal"></span> N</p>
-        <p><strong>Fricción (fk):</strong> <span id="valFriccion"></span> N</p>
-        <p><strong>Aceleración (a):</strong> <span id="valAcel"></span> m/s²</p>
+        <div class="dato">
+          <strong>Normal (N)</strong>
+          <span id="valNormal">0.00</span> N
+        </div>
+        <div class="dato">
+          <strong>Fricción (fk)</strong>
+          <span id="valFriccion">0.00</span> N
+        </div>
+        <div class="dato">
+          <strong>Aceleración (a)</strong>
+          <span id="valAcel">0.00</span> m/s²
+        </div>
       </div>
       
       <div class="grafico-box">
         <canvas id="grafico" width="500" height="450"></canvas>
       </div>
+      <p class="nota-pie">*El gráfico muestra la dirección de las fuerzas resultantes.</p>
     </section>
   </main>
 
